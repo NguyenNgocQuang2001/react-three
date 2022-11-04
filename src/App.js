@@ -2,6 +2,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber'
 import Line from './components/line';
 import Points from './components/point';
+import Plane from './components/plane';
 
 function App() {
 	return (
@@ -10,9 +11,9 @@ function App() {
 			<spotLight position={[0, 0, 0]} angle={0.5} penumbra={1} />
 			<pointLight position={[0, 0, 0]} />
 			<OrbitControls />
-			<Line start={[-10, 0, 0]} end={[10, 0, 0]} />
-			<Line start={[0, -10, 0]} end={[0, 10, 0]} />
-			<Line start={[0, 0, -10]} end={[0, 0, 10]} />
+			<Line start={[-10, 0, 0]} end={[10, 0, 0]} colour="red"/>
+			<Line start={[0, -10, 0]} end={[0, 10, 0]} colour="blue"/>
+			<Line start={[0, 0, -10]} end={[0, 0, 10]} colour="green"/>
 
 
 			{ /**
@@ -25,7 +26,23 @@ function App() {
 			<Line start={[2, 2, 2]} end={[1, 2, 2]} />
 			<Line start={[1, 2, 2]} end={[2, 2, 1]} />
 
-			<Points />
+			<Points 
+				count={10}
+				ax
+				ay
+			/>
+			<Points 
+				count={10}
+				ax
+				az
+			/>
+			<Points 
+				count={10}
+				az
+				ay
+			/>
+
+			{/* <Plane /> */}
 		</Canvas>
 	);
 }

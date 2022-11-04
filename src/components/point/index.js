@@ -3,21 +3,19 @@ import * as THREE from 'three'
 import circleImg from "../../asset/circle.png"
 import { useLoader } from '@react-three/fiber'
 
-function Points( { } ) {
+function Points( { count, ax, ay, az } ) {
     const CircleImg = useLoader(THREE.TextureLoader, circleImg);
-    const count = 10;
-    const sep = 3;
     let positions = useMemo(() => {
         let positions = [];
-        for (let xi = -count; xi <= count; xi++) {
+        for (let i = -count; i <= count; i++) {
             
-            let y = 0
-            let z = 0
-            let x = xi
+            let y = ax ? 0 : i
+            let z = ay ? 0 : i
+            let x = az ? 0 : i
             positions.push(x, y, z);
         }
         return new Float32Array(positions);
-    }, [count, sep]); 
+    });
     return (
         <points>
             <bufferGeometry attach="geometry">
@@ -32,11 +30,7 @@ function Points( { } ) {
                 attach="material"
                 map={CircleImg}
                 color={0x00aaff}
-                sizeAttenuation
-                transparent={false}
-                alphaTest={0.5}
-                opacity={1.0}
-                size={0.2}
+                size={0.1}
             />
         </points>
     );
